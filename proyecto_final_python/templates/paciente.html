@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- INTEGRANTES : Lincoln Smith - Ignacio Medina -->
+    <!-- INTEGRANTES : Lincoln Smith - Ignacio Medina -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
+    ></script>
+    <title></title>
+    <style type="text/css">
+      table {
+        width: 100%;
+      }
+      body{
+        background-color: rgb(209, 209, 209);
+      }
+      a:hover{
+        text-decoration: none;
+        color: black;
+      }
+      button,a{
+        text-decoration:none;
+        color:#fff;
+      }
+      table,td,th{
+        text-align: center;
+      }
+      .contenedor{
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+        <div class="container">
+          <h1>Pacientes</h1>
+
+
+          {%  with messages = get_flashed_messages()   %}
+          {% if messages %}
+          {% for message in messages %}
+          <h3>{{ message }}</h3>
+          {% endfor %}
+          {% endif %}
+          {% endwith%}
+
+
+          <button class="btn btn-primary" onclick="location.href='/nuevoPaciente'">Nuevo Paciente
+            <span class="glyphicon glyphicon-plus"></span></button>
+          <button class="btn btn-warning" onclick="location.href='/ListadoVacunas'">Lista de vacunas</button>
+          <table class="table table-hover table-striped" id="myTable">
+            <thead>
+              <tr>
+                <th>Rut</th>
+                <th>Nombre</th>
+                <th>Fecha Nacimiento</th>
+                <th>Agregar Vacuna</th>
+                <th>Ver Detalles</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for paciente in variablehtml %}
+              <tr>
+                <td>{{ paciente['rut'] }}</td>
+                <td>{{ paciente['nombre'] }}</td>
+                <td>{{ paciente['fecha_nac'] }}</td>
+                <td>
+                  <button class="btn btn-info"><a href="/agregarVacunacion/{{paciente['rut']}}"
+                    ><span class="glyphicon glyphicon-plus"></span></button></a
+                  ></button>
+              </td>
+              <td>
+                <button class="btn btn-info"><a href="/verVacunaPaciente/{{paciente['rut']}}">
+                  <span class="glyphicon glyphicon-zoom-in"></span></a>
+                  </button>
+              </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    
+  </body>
+</html>
+<script type="text/javascript">
+	$(document).ready( function () {
+	  $('#myTable').DataTable();
+	});
+  </script>
+  </html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- INTEGRANTES : Lincoln Smith - Ignacio Medina -->
+    <!-- INTEGRANTES : Lincoln Smith - Ignacio Medina -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vacunar paciente</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
+    ></script>
+    <style>
+      table,td,th{
+        align-items: center;
+        text-align: center;
+      }
+      #btnVolver{
+        width: 200px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        color: black;
+        transform: translate(-50%,-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <table class="table table-hover" id="myTable">
+        <caption>
+          <h2>Vacunar Paciente</h2>
+
+          {%  with messages = get_flashed_messages()   %}
+          {% if messages %}
+          {% for message in messages %}
+          <h3>{{ message }}</h3>
+          {% endfor %}
+          {% endif %}
+          {% endwith%}
+
+          <button onclick="location.href='/'" class="btn btn-warning"  id="btnVolver">
+            <span class="glyphicon glyphicon-arrow-left"></span> Volver
+          </button>
+        </caption>
+        <tr>
+          <th>Nombre</th>
+          <th>Rut</th>
+          <th>Fecha Nacimiento</th>
+          <td>Vacunar</td>
+          <td>Seleccionar Vacuna</td>
+        </tr>
+        {% for paciente in datosPaciente %}
+        <tr>
+          <td>{{ paciente['nombre'] }}</td>
+          <td>{{ paciente['rut'] }}</td>
+          <td>{{ paciente['fecha_nac'] }}</td>
+          <td>
+            <form action="/agregarVacunacion/{{paciente['rut']}}" method="POST">
+              <select
+                name="idVacuna"
+                class="form-control input-sm"
+                id="selectp"
+              >
+                {% for enfermedades in enfermedadPaciente %}
+                <option value="{{enfermedades['idVacuna']}}">
+                  {{enfermedades['enfermedad']}}
+                </option>
+                {% endfor %}
+              </select>
+              <!-- <button id="btnEnviar" class="btn btn-primary" type="submit">Vacunar paciente</button> -->
+            <!-- </form> -->
+          </td>
+          <td>
+            <button id="btnEnviar" class="btn btn-primary" type="submit">
+              Vacunar paciente
+            </button>
+          </td>
+          </form>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </body>
+</html>

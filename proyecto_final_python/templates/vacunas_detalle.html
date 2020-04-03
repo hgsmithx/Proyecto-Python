@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- INTEGRANTES : Lincoln Smith - Ignacio Medina -->
+    <!-- INTEGRANTES : Lincoln Smith - Ignacio Medina -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vacunados</title>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <table class="table table-hover " id="myTable">
+            <caption>
+                {%for id in enfermedad %}
+                <h2>Pacientes con la Vacuna: {{  id['enfermedad'] }}</h2>
+                {% endfor %}
+            </caption>
+            <tr>
+                <th>Nombre</th>
+                <th>Rut</th>
+                <th>Fec. Vacuna</th>
+            </tr>
+            {% for paciente in vp %}
+            <tr>
+                <td>{{ paciente['nombre'] }}</td>
+                <td>{{ paciente['rut'] }}</td>
+                <td>{{ paciente['fecha_vacuna'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <button style="margin-top: 10px;" onclick="location.href='/ListadoVacunas'" class="btn btn-warning"  id="btnVolver"><span class="glyphicon glyphicon-arrow-left"></span> Volver</button>
+    </div>
+    
+</body>
+</html>
+<script type="text/javascript">
+	$(document).ready( function () {
+	  $('#myTable').DataTable();
+	});
+  </script>
+  </html>

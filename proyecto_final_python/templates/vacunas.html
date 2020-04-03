@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- INTEGRANTES : Lincoln Smith - Ignacio Medina -->
+  <!-- INTEGRANTES : Lincoln Smith - Ignacio Medina -->
+  <title>Lista de vacunas</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+</head>
+<style>
+.botones button{
+  margin-top: 10px;
+  width: 200px;
+}
+</style>
+<body>
+
+<div class="container">
+  <h2>Listado de vacunas</h2>
+
+
+  {%  with messages = get_flashed_messages()   %}
+	{% if messages %}
+	{% for message in messages %}
+	<h3>{{ message }}</h3>
+	{% endfor %}
+	{% endif %}
+	{% endwith%}
+
+  
+	<br>
+  <table class="table table-hover" id="myTable">
+    
+  <caption>
+    <thead>
+      <tr>
+        <th>Enfermedad</th>
+        <th>Fecha Registro</th>
+        <th>Pacientes</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for vacuna in variable2html %}
+        <tr>
+          <td>{{ vacuna['enfermedad'] }}</td>
+          <td>{{ vacuna['fecha_registro'] }}</td>
+          <td><a href="/vacunaPaciente/{{vacuna['idVacuna']}}">Ver</a></td> 
+
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="botones"><button class="btn btn-primary" id="btnNueva" onclick="location.href='/nuevaVacuna'">Nueva Vacuna <span class="glyphicon glyphicon-plus"></span></button>
+    <button onclick="location.href='/'" class="btn btn-warning"  id="btnVolver">
+      <span class="glyphicon glyphicon-arrow-left"></span> Volver
+    </button></div>
+  
+</div>
+
+</body>
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#myTable').DataTable();
+  });
+</script>
+</html>

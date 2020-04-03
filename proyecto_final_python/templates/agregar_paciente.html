@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- INTEGRANTES : Lincoln Smith - Ignacio Medina -->
+  <!-- INTEGRANTES : Lincoln Smith - Ignacio Medina -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar un nuevo paciente</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+    .contenedor{
+      box-sizing: content-box;
+      padding: 30px;
+      background-color:#f9f7f7;
+      position: absolute;
+      width: 30%;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+    #btnVolver{
+      margin: 10px 0 0 25%;
+      width: 50%;
+    }
+    #btnEnviar{
+      margin: 20px 0 0 25%;
+      width: 50%;
+      
+    }
+    label{
+      margin-top: 30px;
+    }
+    </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+</head>
+<body style="background-color: #112d4e;">
+  <div class="bodyfalso">
+    <div class="contenedor">
+      <div class="form-group">
+        <h2>Agregue un nuevo paciente</h2>
+        <form action="/" method="POST">
+          <label for="txtRut">Rut</label>
+          <input class="form-control" placeholder="Ingrese el rut" type="text" name="rut" id="txtRut" placeholder="Rut">
+          
+          <label for="txtNombre">Nombre Completo</label>
+          <input class="form-control" type="text" name="nombre" id="txtNombre" placeholder="Nombre completo">
+          
+          <label for="txtFecha">Fecha</label>
+          <input class="form-control" id="txtFecha" type="date" format='yyyy-mm-dd' name="fecha_nac" placeholder="Fecha de nacimiento yyyy-mm-dd">
+    
+          <button class="btn btn-primary" id="btnEnviar">Registrar</button>
+          
+      </form>
+      <button onclick="location.href='/'" class="btn btn-warning"  id="btnVolver"><span class="glyphicon glyphicon-arrow-left"></span> Volver</button>
+      </div>
+    </div>
+  </div>
+  
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready( function () {
+      $('#myTable').DataTable();
+    });
+  </script>
+  </html>
+  
